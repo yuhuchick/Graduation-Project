@@ -1,5 +1,16 @@
 #!/usr/bin/env sh
-. "$(dirname -- "$0")/_/husky.sh"
+. "$(dirname "$0")/_/husky.sh"
 
-npx --no-install lint-staged
-npx --no-install lint-staged
+echo "Running ESLint..."
+
+# Run ESLint and ignore warnings
+npx eslint . --max-warnings=-1
+ESLINT_EXIT_CODE=$?
+
+if [ $ESLINT_EXIT_CODE -ne 0 ]; then
+  echo "❌ ESLint found errors. Commit aborted."
+  exit 1
+fi
+
+echo "✅ ESLint通过啦，接下来进行commit..."
+exit 0
