@@ -1,0 +1,9 @@
+const HomePage = () => {
+  return (
+    <div>
+      <h1>Welcome to CompuCareer</h1>
+    </div>
+  );
+};
+
+export default HomePage;
