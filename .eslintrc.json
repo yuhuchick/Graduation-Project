@@ -1,23 +1,87 @@
 {
-  "extends": [
-    "next/core-web-vitals",
-    "plugin:@typescript-eslint/recommended",
-    "plugin:prettier/recommended",
-    "eslint-config-prettier"
-  ],
-  "plugins": ["prettier"],
-  "rules": {
-    "@typescript-eslint/no-explicit-any": ["off"], //允许使用any
-    "@typescript-eslint/ban-ts-comment": "off", //允许使用@ts-ignore
-    "@typescript-eslint/no-non-null-assertion": "off", //允许使用非空断言
-    "@typescript-eslint/no-var-requires": "off", //允许使用CommonJS的写法
-    "no-console": [
-      //提交时不允许有console.log
-      "warn",
-      {
-        "allow": ["warn", "error"]
-      }
+    "root": true,
+    "globals": {
+      "window": true,
+      "Atomics": "readonly",
+      "SharedArrayBuffer": "readonly"
+    },
+    "env": {
+      "browser": true,
+      "node": true
+    },
+    "ignorePatterns": [
+      "build/",
+      "dist/",
+      ".dist/",
+      ".dist.dev/",
+      ".dist.test/",
+      ".eslintrc.cjs",
+      "conversion-dagre-graph",
+      "cypress",
+      "public/",
+      "node_modules/",
+      "cypress.config.ts",
+      "next-sitemap.js",
+      "**/*.scss",
+      "**/*.css",
+      ".upload/"
     ],
-    "no-debugger": "warn"
+    "extends": [
+      "airbnb",
+      "airbnb-typescript",
+      "airbnb/hooks",
+      "eslint:recommended",
+      "plugin:import/recommended",
+      "plugin:react/recommended",
+      "plugin:@typescript-eslint/recommended",
+      "next",
+      "next/core-web-vitals",
+      "plugin:prettier/recommended"
+    ],
+    "settings": {
+      "react": {
+        "pragma": "React",
+        "version": "detect"
+      },
+      "next": {
+        "rootDir": "src/"
+      }
+    },
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+      "project": ["./tsconfig.json"],
+      "ecmaVersion": 2018,
+      "sourceType": "module",
+      "ecmaFeatures": {
+        "jsx": true
+      }
+    },
+    "rules": {
+      "@typescript-eslint/strict-boolean-expressions": [
+        "warn",
+        {
+          "allowString": true,
+          "allowNumber": true
+        }
+      ],
+      "@typescript-eslint/no-unused-vars": ["warn"],
+      "react/jsx-props-no-spreading": ["warn"],
+      "@typescript-eslint/naming-convention": [
+        "error",
+        {
+          "selector": "function",
+          "format": ["camelCase", "PascalCase", "snake_case"],
+          "leadingUnderscore": "allow"
+        }
+      ],
+      "@typescript-eslint/no-explicit-any": ["off"],
+      "no-underscore-dangle": ["off"],
+      "jsx-a11y/label-has-associated-control": ["off"],
+      "jsx-a11y/label-has-for": ["off"],
+      "jsx-a11y/anchor-is-valid": ["off"],
+      "react/require-default-props": ["off"],
+      "react/no-unused-prop-types": ["off"],
+      "no-unused-vars": ["off"]
+    }
   }
-}
+  
